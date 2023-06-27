@@ -1,8 +1,8 @@
 ### Photo of models and relations
-![alt text](C:\Users\Sviatoslav\IdeaProjects\jv-taxi-service\taxi_models_diagram.jpeg)
+![alt text](taxi_models_diagram.jpeg)
 
 ### Photo of db schema
-![diagram](C:\Users\Sviatoslav\IdeaProjects\jv-taxi-service\join-db-diagram.png)
+![diagram](join-db-diagram.png)
 
 ### Functional requirements
 
