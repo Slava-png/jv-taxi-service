@@ -1,18 +1,25 @@
 package taxi.dao.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.SQLException;
 import taxi.dao.ManufacturerDao;
 import taxi.exception.DataProcessingException;
 import taxi.lib.Dao;
 import taxi.model.Manufacturer;
 import taxi.util.ConnectionUtil;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 @Dao
 public class ManufacturerDaoImpl implements ManufacturerDao {
+    private static final Logger logger = LogManager.getLogger(ManufacturerDaoImpl.class);
+
     @Override
     public Manufacturer create(Manufacturer manufacturer) {
         String query = "INSERT INTO manufacturers (name, country) VALUES (?,?)";
@@ -26,6 +33,7 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
             }
             return manufacturer;
         } catch (SQLException e) {
+            logger.error("Can't create manufacturer " + manufacturer);
             throw new DataProcessingException("Can't create manufacturer " + manufacturer, e);
         }
     }
@@ -43,6 +51,7 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
             }
             return Optional.ofNullable(manufacturer);
         } catch (SQLException e) {
+            logger.error("Can't get manufacturer by id " + id);
             throw new DataProcessingException("Can't get manufacturer by id " + id, e);
         }
     }
@@ -59,6 +68,7 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
             }
             return manufacturers;
         } catch (SQLException e) {
+            logger.error("Can't get a list of manufacturers");
             throw new DataProcessingException("Can't get a list of manufacturers.", e);
         }
     }
@@ -74,6 +84,7 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
             statement.executeUpdate();
             return manufacturer;
         } catch (SQLException e) {
+            logger.error("Can't update a manufacturer " + manufacturer);
             throw new DataProcessingException("Can't update a manufacturer "
                     + manufacturer, e);
         }
@@ -87,6 +98,7 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
             statement.setLong(1, id);
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
+            logger.error("Can't delete a manufacturer by id " + id);
             throw new DataProcessingException("Can't delete a manufacturer by id " + id, e);
         }
     }
