@@ -1,42 +1,78 @@
-### Photo of models and relations
-![alt text](C:\Users\Sviatoslav\IdeaProjects\jv-taxi-service\taxi_models_diagram.jpeg)
+# 🚕 Taxi-Service 🚕
+### Project description:
+```
+A simple web-application that supports authentication, registration and other CRUD operations.
+```
+# 🚀 Features
+- Authentication like a driver
+- create/update/remove a car;
+- create/update/remove a driver;
+- create/update/remove a manufacturer;
+- display list of all cars;
+- display list of all drivers;
+- display list of all manufacturers;
+- display  cars of the current driver;
+## 📂Structure
+#### Project has N-Tier Architecture:
+* `controller`: Contains servlets that handle HTTP requests and responses;
+* `dao`: Contains data access objects for database operations;
+* `exception`: Contains custom exception classes;
+* `lib`: Contains dependency injectors;
+* `model`: Contains domain models (entities);
+* `service`: Contains business logic and services;
+* `util`: Contains utility class used for managing database connections;
+* `webfilter`: Contains the class used to authenticate user requests.
+* `resources`: Contains the script used to initialize the database schema
+* `webapp`: JSP files, CSS files, and the web.xml deployment descriptor;
+## 🔧 Endpoints
+* `/cars` 
+  * `/drivers`
+    * `/add` - add driver to a car
+  * `/add` - add a car
+  * `/all` - show all cars
+* `/drivers`
+  * `/add` - add a driver
+  * `/all` - show all drivers
+* `/manufacturers` 
+  * `/add` - add a manufacturer
+  * `/all` - show all manufacturers
+* `/index` - main page
+* `/login` - redirects to 'add a driver' page
+* `/logout` - logout page
+## ⚙️ Used technologies and libraries:
+- Java (JDK 11)
+- Apache Maven
+- Apache Tomcat
+- MySQL
+- JDBC
+- Javax Servlet
+- JSP and JSTL
+- HTML/CSS
+- Checkstyle plugin
+- log4j2
+## 🔨 Steps how to run:
+### Required tools:
+- Java
+- Maven
+- Apache Tomcat
+- MySQL database
+### Steps to follow:
+- Run script from the `resources/init_db.sql` file to set up DB
+- Specify your database connection parameters in the `src/main/java/taxi/util/ConnectionUtil.java`.
+- Set up Tomcat 
+- Run the app 
+- Go to the http://localhost:8080
 
-### Photo of db schema
-![diagram](C:\Users\Sviatoslav\IdeaProjects\jv-taxi-service\join-db-diagram.png)
+### Docker image of application:
 
-### Functional requirements
+- Start Docker Engine
+- Pull image from Docker Hub ``
+- Run `docker-compose up`
+- 
 
-- 3-tier architecture (controller, service, dao)
-- AuthenticationFilter to check if user was logged to website
-- JSP for showing html pages 
-- JSTL for plugging java code into jsp pages
 
-### Core services and their methods
-#### CarService methods
-```
-    - Car create(Car car);
-    - Car get(Long id);
-    - List<Car> getAll();
-    - Car update(Car car);
-    - boolean delete(Long id);
-    - void addDriverToCar(Driver driver, Car car);
-    - void removeDriverFromCar(Driver driver, Car car);
-    - List<Car> getAllByDriver(Long driverId);
-```
-#### DriverService methods
-```
-    - Driver create(Driver driver);
-    - Driver get(Long id);
-    - List<Driver> getAll();
-    - Driver update(Driver driver);
-    - boolean delete(Long id);
-```
-#### ManufacturerService methods
-```
-    - Manufacturer create(Manufacturer manufacturer);
-    - Manufacturer get(Long id);
-    - List<Manufacturer> getAll();
-    - Manufacturer update(Manufacturer manufacturer);
-    - boolean delete(Long id);
-```
+
+
+
+
 
